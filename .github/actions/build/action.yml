@@ -46,16 +46,4 @@ runs:
       id: build
       if: ${{ inputs.publish == 'false' }}
       shell: bash
-      run: ./gradlew check antora
-    - name: Publish
-      id: publish
-      if: ${{ inputs.publish == 'true' }}
-      shell: bash
-      run: ./gradlew -PdeploymentRepository=$(pwd)/deployment-repository build publishAllPublicationsToDeploymentRepository
-    - name: Read Version From gradle.properties
-      id: read-version
-      shell: bash
-      run: |
-        version=$(sed -n 's/version=\(.*\)/\1/p' gradle.properties)
-        echo "Version is $version"
-        echo "version=$version" >> $GITHUB_OUTPUT
+      run: NX_BATCH_MODE=true NX_CLOUD_DEREFERENCE_SYMLINKS=true NX_VERBOSE_LOGGING=true NX_PERF_LOGGING=true NX_CLOUD_NO_TIMEOUTS=true NX_CLOUD_VERBOSE_LOGGING=true npx nx run-many -t build-ci --parallel=32 --batch --outputStyle=stream
