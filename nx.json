@@ -2,5 +2,7 @@
   "installation": {
     "version": "21.2.0"
   },
-  "$schema": "./node_modules/nx/schemas/nx-schema.json"
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "nxCloudId": "68504dfb80da91106fb82440",
+  "nxCloudUrl": "https://staging.nx.app"
 }
